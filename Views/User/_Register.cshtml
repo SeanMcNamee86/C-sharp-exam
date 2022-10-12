@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model User
+
+    <div class="card align-content-around" style="width: 18rem;">
+        <div class="card-body bg-primary">
+            <h5 class="card-title text text-center">Register</h5>
+
+            <form asp-controller="User" asp-action="Register" method="post">
+
+                <label asp-for=FirstName></label>
+                <span asp-validation-for=FirstName></span>
+                <input asp-for=FirstName>
+
+                <label asp-for=LastName></label>
+                <span asp-validation-for=LastName></span>
+                <input asp-for=LastName>
+
+                <label asp-for=Email></label>
+                <span asp-validation-for=Email></span>
+                <input asp-for=Email>
+
+                <label asp-for="Password"></label>
+                <span asp-validation-for=Password></span>
+                <input asp-for="Password">
+
+                <label asp-for="ConfirmPW"></label>
+                <span asp-validation-for=ConfirmPW></span>
+                <input asp-for="ConfirmPW">
+                <button>Submit</button>
+            </form>
+
+        </div>
+    </div>

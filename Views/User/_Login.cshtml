@@ -1,0 +1,18 @@
+@model LoginUser
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body bg-primary">
+        <h5 class="card-title text text-center">Login</h5>
+        <form asp-controller="User" asp-action="Login" method="post">
+            <label asp-for="LoginEmail"></label>
+            <span asp-validation-for=LoginEmail></span>
+            <input asp-for="LoginEmail">
+
+            <label asp-for="LoginPassword"></label>
+            <span asp-validation-for=LoginPassword></span>
+            <input asp-for="LoginPassword">
+
+            <button>Submit</button>
+        </form>
+    </div>
+</div>

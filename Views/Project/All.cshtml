@@ -1,0 +1,25 @@
+@model List<Project>
+<div class="d-flex justify-evenly">
+    <div class="container w-75 mx-auto">
+        <h2 class="text-center">Hello @ViewBag.name</h2>
+
+        <div class="mb-3">
+            @foreach (Project p in Model)
+            {
+                <h5>Title: @p.Name</h5>
+                <h5>Percentage of Funds Pledged: @p.GoalPercentage()% </h5>
+                <h5>Creator: @p.Creator.FirstName @p.Creator.LastName</h5>
+                <a href=/projects/@p.ProjectId> View Project Details</a>
+                <div>
+
+                    @if (p.UserId == Context.Session.GetInt32("UUID"))
+                    {
+                        <form asp-controller="Project" asp-action="DeleteProject" asp-route-deletedProjectId="@p.ProjectId"
+                    method="POST">
+                            <button class="btn-outline-danger">Delete</button>
+                        </form>
+                    } 
+
+                </div>
+            }
+        </div>

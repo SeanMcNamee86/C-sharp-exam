@@ -1,0 +1,39 @@
+@model Project
+
+
+
+<h2>@Model.Name</h2>
+@if (@Model.Creator != null)
+{
+    <h4>Planned by @Model.Creator.FirstName @Model.Creator.LastName</h4>
+}
+<div>@Model.Description</div>
+@if(((Model.EndDate - DateTime.Now).TotalDays) > 1)
+{
+    <div>@Math.Round((@Model.EndDate - DateTime.Now).TotalDays) Day(s) remaining!</div>
+} else if (((Model.EndDate - DateTime.Now).TotalHours) > 1)
+{
+    <div>@Math.Round((Model.EndDate - DateTime.Now).TotalHours) Hour(s) remaining!</div>
+} else
+{
+    <div>@Math.Round((Model.EndDate - DateTime.Now).TotalMinutes) Minute(s) remaining!</div>
+}
+
+<div>@Model.Funds</div>
+<div>@Model.Goal</div>
+<div>@Model.GoalPercentage()% of goal raised to date</div>
+<div class="progress">
+  <div class="progress-bar bg-success" role="progressbar" style="width: @Model.GoalPercentage()%" aria-valuenow=@Model.GoalPercentage() aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div>@Model.Funders.Count Supporters</div>
+
+@if (@Model.UserId != Context.Session.GetInt32("UUID"))
+{
+    <form asp-controller="Project" asp-action="Funder" asp-route-projectId="@Model.ProjectId" method="POST">
+        <label>Pledge Amount</label>
+        <input name="amount" type=number>
+        <button>Support</button>
+    </form>
+} else{
+    <div>This is your project! Good luck!</div>
+}
