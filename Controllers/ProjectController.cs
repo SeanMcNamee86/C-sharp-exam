@@ -31,7 +31,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         return View("New");
     }
@@ -41,7 +41,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn || uid == null)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         if( newProject.EndDate < DateTime.Now)
         {
@@ -72,7 +72,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
 
 
@@ -91,7 +91,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         Project? project = db.Projects
             .Include(w => w.Creator)
@@ -113,7 +113,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         Project? project = db.Projects.FirstOrDefault(p => p.ProjectId == deletedProjectId);
 
@@ -130,7 +130,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         Project? project = db.Projects.FirstOrDefault(p => p.ProjectId == projectId);
 
@@ -147,7 +147,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
         if (ModelState.IsValid == false)
         {
@@ -178,7 +178,7 @@ public class ProjectController : Controller
     {
         if (!loggedIn || uid == null)
         {
-            return RedirectToAction("Index", "Users");
+            return RedirectToAction("Index", "User");
         }
 
 
